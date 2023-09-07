@@ -2,6 +2,8 @@
     "conventionalCommits.scopes": [
         "C02",
         "A01",
-        "A00"
+        "A00",
+        "C02",
+        "A02"
     ]
 }
