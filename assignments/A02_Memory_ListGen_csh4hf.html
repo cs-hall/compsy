@@ -8158,7 +8158,7 @@ and whether it is a target or a lure.</p>
     <span class="n">placed_trial</span><span class="p">[</span><span class="s2">"placement"</span><span class="p">]</span> <span class="o">=</span> <span class="n">placed_trial</span><span class="p">[</span><span class="s2">"placement"</span><span class="p">]</span> <span class="o">+</span> <span class="n">proposal</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"trial placements: </span><span class="si">{</span><span class="n">placed_trial</span><span class="p">[</span><span class="s1">'placement'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">placement</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">placed_trial</span><span class="p">[</span><span class="s2">"placement"</span><span class="p">]):</span>
-        <span class="n">working_list</span><span class="p">[</span><span class="n">placement</span><span class="p">]</span> <span class="o">=</span> <span class="n">placed_trial</span>
+        <span class="n">working_list</span><span class="p">[</span><span class="n">placement</span><span class="p">]</span> <span class="o">=</span> <span class="n">placed_trial</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">working_list</span><span class="p">[</span><span class="n">placement</span><span class="p">][</span><span class="s2">"repetition"</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
         <span class="n">working_list</span><span class="p">[</span><span class="n">placement</span><span class="p">][</span><span class="s2">"location"</span><span class="p">]</span> <span class="o">=</span> <span class="n">placement</span>
 
@@ -9070,51 +9070,51 @@ PASSED: No items repeated through block_1
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>--- STUDY TRIALS ---
-{'pool': 'outdoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([0]), 'id': 3, 'repetition': 0, 'location': 0, 'image_filename': 'out0119_new.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([1, 4]), 'id': 8, 'repetition': 1, 'location': 4, 'image_filename': 'in0026.jpg'}
-{'pool': 'indoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([2]), 'id': 0, 'repetition': 0, 'location': 2, 'image_filename': 'in0216.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([3, 6]), 'id': 5, 'repetition': 1, 'location': 6, 'image_filename': 'out0037_new.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([1, 4]), 'id': 8, 'repetition': 1, 'location': 4, 'image_filename': 'in0026.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([5, 8]), 'id': 2, 'repetition': 1, 'location': 8, 'image_filename': 'in0163.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([3, 6]), 'id': 5, 'repetition': 1, 'location': 6, 'image_filename': 'out0037_new.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([4]), 'placement': array([ 7, 11]), 'id': 11, 'repetition': 1, 'location': 11, 'image_filename': 'out0562.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([5, 8]), 'id': 2, 'repetition': 1, 'location': 8, 'image_filename': 'in0163.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([ 9, 10]), 'id': 10, 'repetition': 1, 'location': 10, 'image_filename': 'out0653.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([ 9, 10]), 'id': 10, 'repetition': 1, 'location': 10, 'image_filename': 'out0653.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([4]), 'placement': array([ 7, 11]), 'id': 11, 'repetition': 1, 'location': 11, 'image_filename': 'out0562.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([12, 13]), 'id': 7, 'repetition': 1, 'location': 13, 'image_filename': 'in0283.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([12, 13]), 'id': 7, 'repetition': 1, 'location': 13, 'image_filename': 'in0283.jpg'}
-{'pool': 'outdoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([14]), 'id': 9, 'repetition': 0, 'location': 14, 'image_filename': 'out0138_new.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([15, 16]), 'id': 4, 'repetition': 1, 'location': 16, 'image_filename': 'out1227.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([15, 16]), 'id': 4, 'repetition': 1, 'location': 16, 'image_filename': 'out1227.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([17, 18]), 'id': 1, 'repetition': 1, 'location': 18, 'image_filename': 'in0067.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([17, 18]), 'id': 1, 'repetition': 1, 'location': 18, 'image_filename': 'in0067.jpg'}
-{'pool': 'indoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([19]), 'id': 6, 'repetition': 0, 'location': 19, 'image_filename': 'in0090.jpg'}
+{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([4]), 'placement': array([0, 4]), 'id': 8, 'repetition': 0, 'location': 0, 'image_filename': 'in0337.jpg'}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([5]), 'placement': array([1, 6]), 'id': 11, 'repetition': 0, 'location': 1, 'image_filename': 'out1380.jpg'}
+{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([2, 5]), 'id': 2, 'repetition': 0, 'location': 2, 'image_filename': 'in0396.jpg'}
+{'pool': 'outdoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([3]), 'id': 3, 'repetition': 0, 'location': 3, 'image_filename': 'out0051_new.jpg'}
+{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([4]), 'placement': array([0, 4]), 'id': 8, 'repetition': 1, 'location': 4, 'image_filename': 'in0337.jpg'}
+{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([3]), 'placement': array([2, 5]), 'id': 2, 'repetition': 1, 'location': 5, 'image_filename': 'in0396.jpg'}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([5]), 'placement': array([1, 6]), 'id': 11, 'repetition': 1, 'location': 6, 'image_filename': 'out1380.jpg'}
+{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([7, 8]), 'id': 1, 'repetition': 0, 'location': 7, 'image_filename': 'in0356.jpg'}
+{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([7, 8]), 'id': 1, 'repetition': 1, 'location': 8, 'image_filename': 'in0356.jpg'}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([5]), 'placement': array([ 9, 14]), 'id': 5, 'repetition': 0, 'location': 9, 'image_filename': 'out0037_new.jpg'}
+{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([10, 11]), 'id': 7, 'repetition': 0, 'location': 10, 'image_filename': 'in0028.jpg'}
+{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([10, 11]), 'id': 7, 'repetition': 1, 'location': 11, 'image_filename': 'in0028.jpg'}
+{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([12, 13]), 'id': 10, 'repetition': 0, 'location': 12, 'image_filename': 'out0046_new.jpg'}
+{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([12, 13]), 'id': 10, 'repetition': 1, 'location': 13, 'image_filename': 'out0046_new.jpg'}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2, 'distances': array([5]), 'placement': array([ 9, 14]), 'id': 5, 'repetition': 1, 'location': 14, 'image_filename': 'out0037_new.jpg'}
+{'pool': 'outdoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([15]), 'id': 9, 'repetition': 0, 'location': 15, 'image_filename': 'out1914.jpg'}
+{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([16, 17]), 'id': 4, 'repetition': 0, 'location': 16, 'image_filename': 'out0531.jpg'}
+{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2, 'distances': array([1]), 'placement': array([16, 17]), 'id': 4, 'repetition': 1, 'location': 17, 'image_filename': 'out0531.jpg'}
+{'pool': 'indoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([18]), 'id': 0, 'repetition': 0, 'location': 18, 'image_filename': 'in0101.jpg'}
+{'pool': 'indoor', 'type': '1p', 'reps': 1, 'distances': None, 'placement': array([19]), 'id': 6, 'repetition': 0, 'location': 19, 'image_filename': 'in0263.jpg'}
 --- TEST TRIALS ---
-{'pool': 'indoor', 'type': '1p', 'reps': 1.0, 'distances': None, 'placement': array([19]), 'id': 6, 'old': True, 'test_placement': 0, 'image_filename': 'in0090.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -1, 'old': False, 'test_placement': 1, 'image_filename': 'in0350.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2.0, 'distances': array([1]), 'placement': array([ 9, 10]), 'id': 10, 'old': True, 'test_placement': 2, 'image_filename': 'out0653.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -5, 'old': False, 'test_placement': 3, 'image_filename': 'in0212.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -4, 'old': False, 'test_placement': 4, 'image_filename': 'out2597.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2.0, 'distances': array([3]), 'placement': array([5, 8]), 'id': 2, 'old': True, 'test_placement': 5, 'image_filename': 'in0163.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -8, 'old': False, 'test_placement': 6, 'image_filename': 'out1520.jpg'}
-{'pool': 'outdoor', 'type': '1p', 'reps': 1.0, 'distances': None, 'placement': array([0]), 'id': 3, 'old': True, 'test_placement': 7, 'image_filename': 'out0119_new.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -3, 'old': False, 'test_placement': 8, 'image_filename': 'in0179.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -2, 'old': False, 'test_placement': 9, 'image_filename': 'out0034_new.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2.0, 'distances': array([1]), 'placement': array([17, 18]), 'id': 1, 'old': True, 'test_placement': 10, 'image_filename': 'in0067.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -12, 'old': False, 'test_placement': 11, 'image_filename': 'out1012.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -6, 'old': False, 'test_placement': 12, 'image_filename': 'out2616.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -7, 'old': False, 'test_placement': 13, 'image_filename': 'in0058.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2.0, 'distances': array([4]), 'placement': array([ 7, 11]), 'id': 11, 'old': True, 'test_placement': 14, 'image_filename': 'out0562.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -9, 'old': False, 'test_placement': 15, 'image_filename': 'in0197.jpg'}
-{'pool': 'indoor', 'type': '1p', 'reps': 1.0, 'distances': None, 'placement': array([2]), 'id': 0, 'old': True, 'test_placement': 16, 'image_filename': 'in0216.jpg'}
-{'pool': 'outdoor', 'type': 'massed-rep', 'reps': 2.0, 'distances': array([1]), 'placement': array([15, 16]), 'id': 4, 'old': True, 'test_placement': 17, 'image_filename': 'out1227.jpg'}
-{'pool': 'indoor', 'type': 'spaced-rep', 'reps': 2.0, 'distances': array([3]), 'placement': array([1, 4]), 'id': 8, 'old': True, 'test_placement': 18, 'image_filename': 'in0026.jpg'}
-{'pool': 'indoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -11, 'old': False, 'test_placement': 19, 'image_filename': 'in0151.jpg'}
-{'pool': 'outdoor', 'type': '1p', 'reps': 1.0, 'distances': None, 'placement': array([14]), 'id': 9, 'old': True, 'test_placement': 20, 'image_filename': 'out0138_new.jpg'}
-{'pool': 'indoor', 'type': 'massed-rep', 'reps': 2.0, 'distances': array([1]), 'placement': array([12, 13]), 'id': 7, 'old': True, 'test_placement': 21, 'image_filename': 'in0283.jpg'}
-{'pool': 'outdoor', 'type': 'spaced-rep', 'reps': 2.0, 'distances': array([3]), 'placement': array([3, 6]), 'id': 5, 'old': True, 'test_placement': 22, 'image_filename': 'out0037_new.jpg'}
-{'pool': 'outdoor', 'type': 'lure', 'reps': nan, 'distances': nan, 'placement': nan, 'id': -10, 'old': False, 'test_placement': 23, 'image_filename': 'out2150.jpg'}
+{'pool': 'outdoor', 'type': 'lure', 'id': -2, 'old': False, 'test_placement': 0, 'image_filename': 'out0102_new.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'lure', 'id': -5, 'old': False, 'test_placement': 1, 'image_filename': 'in0358.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'outdoor', 'type': 'lure', 'id': -4, 'old': False, 'test_placement': 2, 'image_filename': 'out1692.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'outdoor', 'type': 'lure', 'id': -6, 'old': False, 'test_placement': 3, 'image_filename': 'out0835.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': '1p', 'id': 6, 'old': True, 'test_placement': 4, 'image_filename': 'in0263.jpg', 'reps': 1.0, 'distances': None, 'placement': array([19])}
+{'pool': 'outdoor', 'type': 'massed-rep', 'id': 10, 'old': True, 'test_placement': 5, 'image_filename': 'out0046_new.jpg', 'reps': 2.0, 'distances': array([1]), 'placement': array([12, 13])}
+{'pool': 'outdoor', 'type': 'lure', 'id': -10, 'old': False, 'test_placement': 6, 'image_filename': 'out2279.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'spaced-rep', 'id': 2, 'old': True, 'test_placement': 7, 'image_filename': 'in0396.jpg', 'reps': 2.0, 'distances': array([3]), 'placement': array([2, 5])}
+{'pool': 'indoor', 'type': 'lure', 'id': -9, 'old': False, 'test_placement': 8, 'image_filename': 'in0109.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'lure', 'id': -7, 'old': False, 'test_placement': 9, 'image_filename': 'in0036.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'lure', 'id': -11, 'old': False, 'test_placement': 10, 'image_filename': 'in0376.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'outdoor', 'type': '1p', 'id': 3, 'old': True, 'test_placement': 11, 'image_filename': 'out0051_new.jpg', 'reps': 1.0, 'distances': None, 'placement': array([3])}
+{'pool': 'indoor', 'type': 'lure', 'id': -1, 'old': False, 'test_placement': 12, 'image_filename': 'in0064.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'massed-rep', 'id': 1, 'old': True, 'test_placement': 13, 'image_filename': 'in0356.jpg', 'reps': 2.0, 'distances': array([1]), 'placement': array([7, 8])}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'id': 11, 'old': True, 'test_placement': 14, 'image_filename': 'out1380.jpg', 'reps': 2.0, 'distances': array([5]), 'placement': array([1, 6])}
+{'pool': 'outdoor', 'type': 'lure', 'id': -8, 'old': False, 'test_placement': 15, 'image_filename': 'out0071_new.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': 'lure', 'id': -3, 'old': False, 'test_placement': 16, 'image_filename': 'in0162.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'outdoor', 'type': 'lure', 'id': -12, 'old': False, 'test_placement': 17, 'image_filename': 'out0136_new.jpg', 'reps': nan, 'distances': nan, 'placement': nan}
+{'pool': 'indoor', 'type': '1p', 'id': 0, 'old': True, 'test_placement': 18, 'image_filename': 'in0101.jpg', 'reps': 1.0, 'distances': None, 'placement': array([18])}
+{'pool': 'outdoor', 'type': 'massed-rep', 'id': 4, 'old': True, 'test_placement': 19, 'image_filename': 'out0531.jpg', 'reps': 2.0, 'distances': array([1]), 'placement': array([16, 17])}
+{'pool': 'indoor', 'type': 'spaced-rep', 'id': 8, 'old': True, 'test_placement': 20, 'image_filename': 'in0337.jpg', 'reps': 2.0, 'distances': array([4]), 'placement': array([0, 4])}
+{'pool': 'outdoor', 'type': '1p', 'id': 9, 'old': True, 'test_placement': 21, 'image_filename': 'out1914.jpg', 'reps': 1.0, 'distances': None, 'placement': array([15])}
+{'pool': 'indoor', 'type': 'massed-rep', 'id': 7, 'old': True, 'test_placement': 22, 'image_filename': 'in0028.jpg', 'reps': 2.0, 'distances': array([1]), 'placement': array([10, 11])}
+{'pool': 'outdoor', 'type': 'spaced-rep', 'id': 5, 'old': True, 'test_placement': 23, 'image_filename': 'out0037_new.jpg', 'reps': 2.0, 'distances': array([5]), 'placement': array([ 9, 14])}
 </pre>
 </div>
 </div>
