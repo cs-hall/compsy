@@ -1,10 +1,9 @@
 {
     "conventionalCommits.scopes": [
-        "C02",
         "A01",
         "A00",
-        "C02",
-        "A02"
+        "A02",
+        "Class",
     ],
     "python.analysis.typeCheckingMode": "basic"
 }
