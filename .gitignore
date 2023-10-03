@@ -111,3 +111,5 @@ venv.bak/
 
 # smile test data
 *test000
+# stimuli
+*stimuli/
