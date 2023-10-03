@@ -1,5 +1,6 @@
 import csv  # for reading in files
 import logging  # practice doing good stuff
+import os
 import random  # for shuffling lists
 from copy import deepcopy  # for fixing terrible bugs
 
@@ -817,6 +818,8 @@ def read_all_images(filename_dict: dict) -> dict[str, str]:
     image_dict = {}
     for pool, filename in filename_dict.items():
         # create a dictionary reader
+        logging.debug(f"All the files in the current wd:")
+        logging.debug(os.listdir())
         loop_reader = csv.DictReader(open(filename, "r"))
         # read in all the lines into a list of dicts
         # we only care about the filename
