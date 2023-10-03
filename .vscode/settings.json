@@ -4,7 +4,8 @@
         "A00",
         "A02",
         "Class",
-        "envs"
+        "envs",
+        "A03"
     ],
     "python.analysis.typeCheckingMode": "basic"
 }
