@@ -3,6 +3,7 @@ import A02_ListGen_script as LG  # List Gen
 import numpy as np
 #from smile.common import *
 
+
 # enter configuration variables here (including the listgen variables)
 ## List gen
 lg_block = 1

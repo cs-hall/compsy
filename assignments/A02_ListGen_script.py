@@ -7,12 +7,23 @@ from copy import deepcopy  # for fixing terrible bugs
 import numpy as np  # for classic array stuff
 import pandas as pd  # for tables
 
-logging_level = logging.WARNING
-logging.basicConfig(
-    format="%(levelname)s (%(asctime)s): %(message)s (Line: %(lineno)d [%(filename)s])",
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+log_formatter = logging.Formatter(
+    fmt="[%(levelname)s] (%(asctime)s): %(message)s (Line: %(lineno)d [%(filename)s])",
     datefmt="%Y-%m-%d %H:%M:%S",
-    level=logging_level,
 )
+
+ch = logging.StreamHandler()
+ch.setLevel(logging.ERROR)
+ch.setFormatter(log_formatter)
+fh = logging.FileHandler("A02_ListGen_script_FULL.log")
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(log_formatter)
+
+logger.addHandler(ch)
+logger.addHandler(fh)
 
 """
 Example call
@@ -313,12 +324,12 @@ def create_trial_set(ntrials: int, conditions: list[dict], verbose=False) -> lis
 
     # Create set of trials
     if ntrials % len(conditions) != 0:
-        logging.warning("Number of trials will result in imperfect condition balancing")
+        logger.warning("Number of trials will result in imperfect condition balancing")
     condition_reps = int(np.ceil(ntrials / len(conditions)))
 
     # initialize the trial set
     trial_set = []
-    logging.debug(f"Conditions are repeated {condition_reps} times")
+    logger.debug(f"Conditions are repeated {condition_reps} times")
     for i in range(condition_reps):
         for condition in conditions:
             trial_set.append(condition.copy())
@@ -332,7 +343,7 @@ def create_trial_set(ntrials: int, conditions: list[dict], verbose=False) -> lis
         # add spacing information
         if trial["type"] == "spaced-rep":
             dist_choice = random.choice(trial["distances"])
-            logging.debug(dist_choice)
+            logger.debug(dist_choice)
 
             # using copy to prevent edits later on
             trial["placement"] = dist_choice * trial["placement"].copy()
@@ -370,7 +381,7 @@ def check_placement(working_list: list, trial: dict, placement: int) -> bool:
                 return False
         except IndexError:
             # if this location doesn't exist then this trial doesn't work
-            logging.debug("IndexError prevented in checking placement")
+            logger.debug("IndexError prevented in checking placement")
             return False
     # only if all locations fit is it true
     return True
@@ -393,7 +404,7 @@ def find_placement(working_list: list, trial: dict) -> list[int]:
         if check_placement(working_list, trial, index)
     ]
 
-    logging.debug(f"proposed_indices: {proposal_indices}")
+    logger.debug(f"proposed_indices: {proposal_indices}")
     return proposal_indices
 
 
@@ -410,7 +421,7 @@ def place_trial_in_list(working_list: list, trial: dict, proposal: int) -> list:
     """
     placed_trial = trial.copy()
     placed_trial["placement"] = placed_trial["placement"] + proposal
-    logging.debug(f"trial placements: {placed_trial['placement']}")
+    logger.debug(f"trial placements: {placed_trial['placement']}")
     for i, placement in enumerate(placed_trial["placement"]):
         working_list[placement] = placed_trial
         working_list[placement]["repetition"] = i
@@ -432,13 +443,13 @@ def fit_trials_in_list(working_list: list, trial_set: list, level: int = 0) -> l
         temp_list: a solution to fitting the trial_set in the working_list or empty list
     """
 
-    logging.debug(f"starting loops with {len(trial_set)} trials")
+    logger.debug(f"starting loops with {len(trial_set)} trials")
     if len(trial_set) < 1:
         return working_list
-    logging.debug(f"Trying this trial: {trial_set[0]}")
+    logger.debug(f"Trying this trial: {trial_set[0]}")
     # gone through in order of trial set so we can optimize which trials are hardest to fit first
     proposal_inds = find_placement(working_list, trial_set[0])
-    logging.debug(f"starting loops with {len(proposal_inds)} proposals")
+    logger.debug(f"starting loops with {len(proposal_inds)} proposals")
 
     if len(proposal_inds) > 1:
         random.shuffle(proposal_inds)  # don't want to try the proposals in order
@@ -474,15 +485,15 @@ def fit_trials_in_list(working_list: list, trial_set: list, level: int = 0) -> l
                 return []
         # Only one trial left == nearly done!
         elif len(trial_set) == 1:
-            logging.debug("Last trial placed!")
+            logger.debug("Last trial placed!")
             return temp_list
 
     elif len(proposal_inds) < 1:
         # only happens if there are trials left (otherwise it would have returned in the ==1 condition)
-        logging.debug(f"No good proposals; recursion level {level}")
+        logger.debug(f"No good proposals; recursion level {level}")
         return []
 
-    logging.critical("Don't know what happened here")
+    logger.critical("Don't know what happened here")
     return []
 
 
@@ -499,7 +510,7 @@ def complete_list_gen(trial_set: list, conditions: list, verbose=False) -> list[
     # first create null list
     trial_df = pd.DataFrame(trial_set)
     null_list = [None] * trial_df["reps"].sum()
-    logging.debug(f"Null list is {len(null_list)} long")
+    logger.debug(f"Null list is {len(null_list)} long")
 
     trial_df = trial_df.sample(frac=1)  # randomize the trials
 
@@ -509,7 +520,7 @@ def complete_list_gen(trial_set: list, conditions: list, verbose=False) -> list[
         df = trial_df[trial_df["type"] == condition]
         sorted_trials += df.to_dict("records")
 
-    logging.debug(f"sorted trials is {len(sorted_trials)} long")
+    logger.debug(f"sorted trials is {len(sorted_trials)} long")
 
     # run the fitting process
     final_list = fit_trials_in_list(null_list, sorted_trials)
@@ -542,16 +553,16 @@ def target_lure_order(test_length: int, old_prop: float) -> tuple[list[bool], in
     # Make sure length and prop make sense
 
     if not float(test_length * old_prop).is_integer():
-        logging.warning(f"Exact prop ({old_prop}) is not possible")
+        logger.warning(f"Exact prop ({old_prop}) is not possible")
         old_items = np.round(test_length * old_prop, 0)
         old_prop = old_items / test_length
-        logging.warning(f"Prop is corrected to:{old_prop}")
+        logger.warning(f"Prop is corrected to:{old_prop}")
 
     n_old_items = int(test_length * old_prop)
     n_new_items = int(test_length - n_old_items)
 
     if not n_old_items / (n_old_items + n_new_items) == old_prop:
-        logging.critical(
+        logger.critical(
             f"Prop is not as expected; expected={old_prop}, actual={n_old_items/(n_old_items+n_new_items)}"
         )
 
@@ -622,12 +633,12 @@ def get_old_trials(
     if not all(
         len(i) == len(time_blocked_study_list[0]) for i in time_blocked_study_list
     ):
-        logging.warning(f"Not all blocks of old trials are equal")
+        logger.warning(f"Not all blocks of old trials are equal")
         for i, group in enumerate(time_blocked_study_list):
-            logging.warning(f"Study trials in the {i}th grouping: {len(group)}")
+            logger.warning(f"Study trials in the {i}th grouping: {len(group)}")
     else:
         for i, group in enumerate(time_blocked_study_list):
-            logging.debug(f"Study trials in the {i}th grouping: {len(group)}")
+            logger.debug(f"Study trials in the {i}th grouping: {len(group)}")
 
     assert nOld <= len(
         unique_trials
@@ -665,14 +676,14 @@ def get_old_trials(
             study_type = 0
 
     if not study_type == 0:
-        logging.warning("old items do not sample conditions evenly")
+        logger.warning("old items do not sample conditions evenly")
     if not pool == 0:
-        logging.warning("old items do not sample pool evenly")
+        logger.warning("old items do not sample pool evenly")
     if not time_section == 0:
-        logging.warning("old study items do not sampled time_section")
+        logger.warning("old study items do not sampled time_section")
 
     for i, remains in enumerate(time_blocked_study_list):
-        logging.debug(f"Remaining study session for {i}th grouping: {len(remains)}")
+        logger.debug(f"Remaining study session for {i}th grouping: {len(remains)}")
 
     return old_trials
 
@@ -700,7 +711,7 @@ def create_lure_trials(pools: list[str], lure_types: list, nLures: int) -> list[
             )
 
     if nLures % len(lure_conditions) != 0:
-        logging.warning(
+        logger.warning(
             f"Number of trials will result in imperfect lure condition balancing: nLures({nLures}) mod nLureConditions({len(lure_conditions)}) = {nLures % len(lure_conditions)}"
         )
 
@@ -818,8 +829,8 @@ def read_all_images(filename_dict: dict) -> dict[str, str]:
     image_dict = {}
     for pool, filename in filename_dict.items():
         # create a dictionary reader
-        logging.debug(f"All the files in the current wd:")
-        logging.debug(os.listdir())
+        logger.debug(f"All the files in the current wd:")
+        logger.debug(os.listdir())
         loop_reader = csv.DictReader(open(filename, "r"))
         # read in all the lines into a list of dicts
         # we only care about the filename
@@ -865,7 +876,7 @@ def add_images(block_dict, image_dict):
 
     # check to make sure we have enough items
     for pool, image_list in pool_ids.items():
-        logging.debug(
+        logger.debug(
             f"{pool} ids; required={len(image_list)} > available={len(image_dict[pool])}"
         )
         assert len(image_list) <= len(
@@ -883,7 +894,7 @@ def add_images(block_dict, image_dict):
             image_dict[pool].pop(0)
 
     for pool in image_dict:
-        logging.debug(f"{pool} images left: {len(image_dict[pool])}")
+        logger.debug(f"{pool} images left: {len(image_dict[pool])}")
 
     # add image_filename to block lists
     for trial_list in block_dict.values():
@@ -904,13 +915,13 @@ def create_experiment(block_params, nBlocks, nSubjects, filename_dict):
     experiment_dict = {}
 
     for sub in range(nSubjects):
-        logging.debug(f"completing subject {sub}")
+        logger.debug(f"completing subject {sub}")
 
         # each subject should use one set of images for all their blocks
         sub_images = read_all_images(filename_dict)
         sub_blocks = {}
         for block in range(nBlocks):
-            logging.debug(f"completing block {block}")
+            logger.debug(f"completing block {block}")
             # # Setting a seed for debuging
             # random.seed("Please work like I think you do")
             block_dict = make_study_block(**block_params)
