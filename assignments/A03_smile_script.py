@@ -28,23 +28,47 @@ import pickle
 # lg_filename_dict = {"indoor": "indoor.csv", "outdoor": "outdoor.csv"}
 
 # Per's list gen params
-pool_files = {'indoor': 'indoor.csv',
+lg_pool_files = {'indoor': 'indoor.csv',
               'outdoor': 'outdoor.csv'}
-
-rep_conds = ['once', 'massed', 'spaced']
-loc_conds = ['indoor', 'outdoor']
-
-spaced_range = (4, 9)
-
-num_reps = 4
-num_blocks = 1
-
+lg_rep_conds = ['once', 'massed', 'spaced']
+lg_loc_conds = ['indoor', 'outdoor']
+lg_spaced_range = (4, 9)
+lg_num_reps = 1
+lg_num_blocks = 2
 num_tries = 1000
 
 ## Experiment
-font_size = 75
-resp_keys = ["F", "J"]
-resp_map = {"old": "F", "new": "J"}
+INST_TEXT = """[u][size=40]SPACED REP INSTRUCTIONS[/size][/u]
+
+In this task, you will see pictures one at at time on the screen. 
+Please try to remember these pictures because there will be test after.
+    
+Press ENTER key to continue."""
+INST_FONT_SIZE = 45
+INST_STUDY = """[u][size=40]STUDY PHASE[/size][/u]
+
+This is the study phase of the task. The images will advance automatically. 
+
+Please focus on each image and try to commit it to memory
+    
+Press ENTER key to continue."""
+INST_TEST = """[u][size=40]TEST PHASE[/size][/u]
+
+This is the test phase of the task. You will see images and be asked if they are new or old. 
+The old images are ones that you have seen on the last study session. 
+The new images are ones that you have never seen before. 
+
+Press "F" if the image is OLD
+Press "J" if the image is NEW
+    
+Press ENTER key to continue."""
+END_TEXT = """[u][size=40]THANK YOU[/size][/u]
+
+Thanks for participating! 
+    
+Press ENTER key to close."""
+RESP_KEYS = ["F", "J"]
+RESP_MAP = {"target": "F", "lure": "J"}
 STIM_DUR = 1
 STIM_JITTER = 0
 STUDY_ISI = 1
@@ -62,17 +86,34 @@ STUDY_TEST_WAIT = 5
 # final_dict = LG.create_experiment(
 #     lg_block_params, nBlocks=lg_block, nSubjects=lg_subs, filename_dict=lg_filename_dict
 # )
-# subj_0 = final_dict["subj_0"]
+# blocks = final_dict["subj_0"]
 
 # pers code
 # read all the pools into a dictionary
-pools = {loc: read_and_shuffle(pool_files[loc])
-         for loc in loc_conds}
+# Code to read in the pools
+def read_and_shuffle(pool_file):
+    """Read in and shuffle a pool."""
+    # create a dictionary reader
+    dr = csv.DictReader(open(pool_file, 'r'))
+
+    # read in all the lines into a list of dicts
+    pool = [l for l in dr]
+
+    # shuffle it so that the we get new items each time
+    random.shuffle(pool)
+    
+    # report out some pool info
+    print(pool_file, len(pool))
+
+    # return the shuffled pool
+    return pool
+pools = {loc: read_and_shuffle(lg_pool_files[loc])
+         for loc in lg_loc_conds}
 # create the conds
 # fully crossed with all combos of val and rep
 conds = []
-for loc in loc_conds:
-    for rep in rep_conds:
+for loc in lg_loc_conds:
+    for rep in lg_rep_conds:
         # I decided to call the repetition condition cond
         conds.append({'loc': loc, 'cond': rep})
 
@@ -82,7 +123,7 @@ def make_block():
     """Generate a block, uses global variables"""
     # loop and create the repeated conditions
     block_conds = []
-    for i in range(num_reps):
+    for i in range(lg_num_reps):
         # extend the trials with copies of the conditions
         block_conds.extend(deepcopy(conds))
 
@@ -109,7 +150,7 @@ def make_block():
             num_items += 1
             if c['cond'] == 'spaced':
                 # make sure we have enough items
-                if num_items >= spaced_range[0]:
+                if num_items >= lg_spaced_range[0]:
                     # it worked
                     worked = True
 
@@ -195,11 +236,11 @@ def make_block():
                 # find the first index with open slots
                 # for the second item
                 success = False
-                for ind in range(len(study_list)-spaced_range[0]):
+                for ind in range(len(study_list)-lg_spaced_range[0]):
                     if study_list[ind] is None:
                         # see if we have an open space
                         pos_ind = []
-                        for ind2 in range(ind+spaced_range[0], ind+spaced_range[1]):
+                        for ind2 in range(ind+lg_spaced_range[0], ind+lg_spaced_range[1]):
                             if ind2 < len(study_list) and study_list[ind2] is None:
                                 pos_ind.append(ind2)
                         if len(pos_ind) > 0:
@@ -248,7 +289,7 @@ def make_block():
 
 # generate the proper number of blocks
 blocks = []
-for b in range(num_blocks):
+for b in range(lg_num_blocks):
     blocks.append(make_block())            
 
 
@@ -262,18 +303,18 @@ exp = Experiment(show_splash=False, resolution=(1024, 768))
 def studyTrial(self, block_num, trial_num,trial):
     
     # present stimulus
-    stim = Label(text=trial["image_filename"], font_size=font_size)
+    stim = Label(text=trial["filename"], font_size=50)
     # wait 
     with UntilDone():
-        Wait(Ref.object(STIM_DUR), Ref.object(STIM_JITTER))
+        Wait(STIM_DUR, STIM_JITTER)
     # trial ISI
-    Wait(Ref.object(STUDY_ISI), Ref.object(STUDY_JITTER))
+    Wait(STUDY_ISI, STUDY_JITTER)
 
     Log(
         log_dict=trial,
         name="old-new-study",
-        location=trial['pool'],
-        condition=trial['type'],
+        location=trial['loc'],
+        condition=trial['cond'],
         block_num=block_num,
         trial_num=trial_num,
         stim_on=stim.appear_time,
@@ -284,7 +325,7 @@ def studyTrial(self, block_num, trial_num,trial):
 @Subroutine
 def testTrial(self, block_num, trial_num, trial):
     # present the stimulus
-    stim = Label(text=trial["image_filename"], font_size=font_size)
+    stim = Label(text=trial["filename"], font_size=50)
 
     with UntilDone():
         # make sure the stimulus has appeared on the screen
@@ -292,13 +333,16 @@ def testTrial(self, block_num, trial_num, trial):
 
         # collect a response (with no timeout)
         kp = KeyPress(
-            keys=resp_keys,
+            keys=RESP_KEYS,
             base_time=stim.appear_time["time"],
-            correct_resp=Ref.object(resp_map)[trial["old"]],
+            correct_resp=Ref.object(RESP_MAP)[trial["type"]],
         )
 
     # wait the ISI with jitter
     Wait(Ref.object(TEST_ISI), Ref.object(TEST_JITTER))
+
+    # # TODO: provide feedback to participant?
+    # num_correct = Ref.object(num_correct) + kp.correct
 
     # log the result of the trial
     Log(
@@ -311,31 +355,57 @@ def testTrial(self, block_num, trial_num, trial):
         resp_time=kp.press_time,
         rt=kp.rt,
         correct=kp.correct,
-        location=self.location,
     )
+    
+    
 
 @Subroutine
 def studyTestBlock(self, block_num, block_dict):
-    study_list = block_dict['study']
     # study block
-    with Loop(study_list) as trial:
+    Label(text=INST_STUDY, font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width*0.75, None),
+        markup=True)
+    with UntilDone():
+        Wait(3)
+        KeyPress(keys=['ENTER'])
+    with Loop(block_dict['study']) as trial:
         studyTrial(block_num, trial.i, trial.current)
+    
     # Interval block
     Wait(STUDY_TEST_WAIT)
+    
     # test block
-    test_list = block_dict['test']
-    with Loop(test_list) as trial:
+    Label(text=INST_TEST, font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width*0.75, None),
+        markup=True)
+    with UntilDone():
+        Wait(3)
+        KeyPress(keys=['ENTER'])
+    with Loop(block_dict['test']) as trial:
         testTrial(block_num, trial.i, trial.current)
 
+    # TODO: provide feedback on performance?
 
 
-# InputSubject("Flanker")
-test_study_trial_thing = s0_block_0['study'][0]
 
-studyTrial(1, 1, test_study_trial_thing)
-test_test_trial_thing = s0_block_0['test'][0]
+# InputSubject("old-new")
 
-testTrial(1,1,test_test_trial_thing)
+Label(text=INST_TEXT, font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width*0.75, None),
+        markup=True)
+with UntilDone():
+    Wait(3)
+    KeyPress(keys=['ENTER'])
+
+with Loop(blocks) as block_dict:
+    studyTestBlock(block_dict.i, block_dict.current)
+
+Label(text=END_TEXT, font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width*0.75, None),
+        markup=True)
+with UntilDone():
+    Wait(3)
+    KeyPress(keys=['ENTER'])
 
 
 # run the experiment
