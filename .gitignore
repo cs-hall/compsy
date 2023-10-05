@@ -86,6 +86,8 @@ celerybeat-schedule
 .env
 .venv
 env/
+envs/*/*
+!envs/*/*.yml
 venv/
 ENV/
 env.bak/
@@ -106,3 +108,8 @@ venv.bak/
 
 # other
 *~
+
+# smile test data
+*test000
+# stimuli
+*stimuli/
