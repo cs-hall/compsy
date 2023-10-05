@@ -1,13 +1,13 @@
 # Load in the most common SMILE states
+import csv
+import random
+from copy import deepcopy
+
 import A02_ListGen_script as LG  # List Gen
 import numpy as np
 from smile.common import *
+from smile.math_distract import MathDistract
 from smile.startup import InputSubject
-import random
-import csv
-from copy import deepcopy
-import pickle
-
 
 # enter configuration variables here (including the listgen variables)
 ## List gen
@@ -74,7 +74,14 @@ STUDY_ISI = 1
 STUDY_JITTER = 0.5
 TEST_ISI = 0.5
 TEST_JITTER = 0.5
-STUDY_TEST_WAIT = 5
+
+# Distraction piece
+NUM_VARS=3
+MIN_NUM=1 
+MAX_NUM=9
+MAX_PROBS=50
+DURATION=20
+STUDY_TEST_WAIT = 1
 
 
 # call the listgen code to create your blocks
@@ -375,6 +382,7 @@ def studyTestBlock(self, block_num, block_dict):
 
     # Interval block
     Wait(STUDY_TEST_WAIT)
+    MathDistract(num_vars=3, min_num=1, max_num=9, max_probs=50, duration=20)
 
     # test block
     Label(
