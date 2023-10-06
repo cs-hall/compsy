@@ -61,6 +61,14 @@ Press "F" if the image is OLD
 Press "J" if the image is NEW
     
 Press ENTER key to continue."""
+INST_MATH = """[u][size=40]MATH SECTION[/size][/u]
+
+Here let's do some math!
+
+Press "F" if the equation is correct
+Press "J" if the equation is incorrect
+    
+Press ENTER key to continue."""
 END_TEXT = """[u][size=40]THANK YOU[/size][/u]
 
 Thanks for participating! 
@@ -77,11 +85,11 @@ TEST_ISI = 0.5
 TEST_JITTER = 0.5
 
 # Distraction piece
-NUM_VARS=3
-MIN_NUM=1 
-MAX_NUM=9
-MAX_PROBS=50
-DURATION=20
+NUM_VARS = 3
+MIN_NUM = 1
+MAX_NUM = 9
+MAX_PROBS = 50
+DURATION = 20
 STUDY_TEST_WAIT = 1
 
 
@@ -311,7 +319,13 @@ exp = Experiment(show_splash=False, resolution=(1024, 768))
 @Subroutine
 def studyTrial(self, block_num, trial_num, trial):
     # present stimulus
-    stim = Image(source=STIM_PATH+trial["filename"])
+    stim = Image(
+        source=STIM_PATH + trial["filename"],
+        width=1400,
+        height=1400,
+        allow_stretch=True,
+        keep_ratio=True,
+    )
     # wait
     with UntilDone():
         Wait(STIM_DUR, STIM_JITTER)
@@ -333,7 +347,13 @@ def studyTrial(self, block_num, trial_num, trial):
 @Subroutine
 def testTrial(self, block_num, trial_num, trial):
     # present the stimulus
-    stim = Image(source=STIM_PATH+trial["filename"])
+    stim = Image(
+        source=STIM_PATH + trial["filename"],
+        width=1400,
+        height=1400,
+        allow_stretch=True,
+        keep_ratio=True,
+    )
 
     with UntilDone():
         # make sure the stimulus has appeared on the screen
@@ -376,13 +396,22 @@ def studyTestBlock(self, block_num, block_dict):
         markup=True,
     )
     with UntilDone():
-        Wait(3)
+        # Wait(3)
         KeyPress(keys=["ENTER"])
     with Loop(block_dict["study"]) as trial:
         studyTrial(block_num, trial.i, trial.current)
 
     # Interval block
     Wait(STUDY_TEST_WAIT)
+    Label(
+        text=INST_MATH,
+        font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width * 0.75, None),
+        markup=True,
+    )
+    with UntilDone():
+        # Wait(3)
+        KeyPress(keys=["ENTER"])
     MathDistract(num_vars=3, min_num=1, max_num=9, max_probs=50, duration=20)
 
     # test block
@@ -403,6 +432,7 @@ def studyTestBlock(self, block_num, block_dict):
 
 # InputSubject("old-new")
 
+### MAIN FLOW ###
 Label(
     text=INST_TEXT,
     font_size=INST_FONT_SIZE,
@@ -410,7 +440,7 @@ Label(
     markup=True,
 )
 with UntilDone():
-    Wait(3)
+    # Wait(3)
     KeyPress(keys=["ENTER"])
 
 with Loop(blocks) as block_dict:
@@ -423,7 +453,6 @@ Label(
     markup=True,
 )
 with UntilDone():
-    Wait(3)
     KeyPress(keys=["ENTER"])
 
 
