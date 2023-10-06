@@ -7864,9 +7864,111 @@ a.anchor-link {
 <span class="n">block_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lg_num_blocks</span><span class="p">):</span>
     <span class="n">block_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">make_block</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[INFO   ] [Logger      ] Record log in C:\Users\student\.kivy\logs\kivy_23-10-05_51.txt
+[INFO   ] [Kivy        ] v2.2.1
+[INFO   ] [Kivy        ] Installed at "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\__init__.py"
+[INFO   ] [Python      ] v3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:34:57) [MSC v.1936 64 bit (AMD64)]
+[INFO   ] [Python      ] Interpreter at "c:\Users\student\anaconda3\envs\smile\python.exe"
+[INFO   ] [Logger      ] Purge log fired. Processing...
+[INFO   ] [Logger      ] Purge finished!
+[INFO   ] [Factory     ] 190 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] [Text        ] Provider: sdl2
+[INFO   ] [Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] GLEW initialization succeeded
+[INFO   ] [GL          ] Backend used &lt;glew&gt;
+[INFO   ] [GL          ] OpenGL version &lt;b'4.6.0 - Build 26.20.100.7986'&gt;
+[INFO   ] [GL          ] OpenGL vendor &lt;b'Intel'&gt;
+[INFO   ] [GL          ] OpenGL renderer &lt;b'Intel(R) HD Graphics 520'&gt;
+[INFO   ] [GL          ] OpenGL parsed version: 4, 6
+[INFO   ] [GL          ] Shading version &lt;b'4.60 - Build 26.20.100.7986'&gt;
+[INFO   ] [GL          ] Texture max size &lt;16384&gt;
+[INFO   ] [GL          ] Texture max units &lt;32&gt;
+[INFO   ] [Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+[CRITICAL] [Camera      ] Unable to find any valuable Camera provider. Please enable debug logging (e.g. add -d if running from the command line, or change the log level in the config) and re-run your app to identify potential causes
+picamera - ModuleNotFoundError: No module named 'picamera'
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
+    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
+  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
+  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
+  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
+  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
+  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
+  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
+  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_picamera.py", line 18, in &lt;module&gt;
+    from picamera import PiCamera
 
+gi - ModuleNotFoundError: No module named 'gi'
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
+    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
+  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
+  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
+  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
+  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
+  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
+  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
+  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_gi.py", line 10, in &lt;module&gt;
+    from gi.repository import Gst
 
-<span class="c1"># create an experiment instance</span>
+opencv - ModuleNotFoundError: No module named 'cv2'
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
+    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
+  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
+  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
+  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
+  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
+  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
+  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
+  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
+  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_opencv.py", line 48, in &lt;module&gt;
+    import cv2
+
+[INFO   ] [Video       ] Provider: null(['video_ffmpeg', 'video_ffpyplayer'] ignored)
+[WARNING] [SMILE       ] Unable to import PYO!
+[WARNING] [SMILE       ] Durations will be maintained, unless none are specified
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>indoor.csv 335
+outdoor.csv 309
+0: x
+1: x
+2: OSSMOM Success!
+0: x
+1: SSOMOM Success!
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># create an experiment instance</span>
 <span class="n">exp</span> <span class="o">=</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"OLDNEW"</span><span class="p">,</span> <span class="n">show_splash</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">))</span>
 
 
@@ -8033,106 +8135,10 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>[INFO   ] [Logger      ] Record log in C:\Users\student\.kivy\logs\kivy_23-10-05_31.txt
-[INFO   ] [Kivy        ] v2.2.1
-[INFO   ] [Kivy        ] Installed at "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\__init__.py"
-[INFO   ] [Python      ] v3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:34:57) [MSC v.1936 64 bit (AMD64)]
-[INFO   ] [Python      ] Interpreter at "c:\Users\student\anaconda3\envs\smile\python.exe"
-[INFO   ] [Logger      ] Purge log fired. Processing...
-[INFO   ] [Logger      ] Purge finished!
-[INFO   ] [Factory     ] 190 symbols loaded
-[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
-[INFO   ] [Text        ] Provider: sdl2
-[INFO   ] [Window      ] Provider: sdl2
-[INFO   ] [GL          ] Using the "OpenGL" graphics system
-[INFO   ] [GL          ] GLEW initialization succeeded
-[INFO   ] [GL          ] Backend used &lt;glew&gt;
-[INFO   ] [GL          ] OpenGL version &lt;b'4.6.0 - Build 26.20.100.7986'&gt;
-[INFO   ] [GL          ] OpenGL vendor &lt;b'Intel'&gt;
-[INFO   ] [GL          ] OpenGL renderer &lt;b'Intel(R) HD Graphics 520'&gt;
-[INFO   ] [GL          ] OpenGL parsed version: 4, 6
-[INFO   ] [GL          ] Shading version &lt;b'4.60 - Build 26.20.100.7986'&gt;
-[INFO   ] [GL          ] Texture max size &lt;16384&gt;
-[INFO   ] [GL          ] Texture max units &lt;32&gt;
-[INFO   ] [Window      ] auto add sdl2 input provider
-[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
-[CRITICAL] [Camera      ] Unable to find any valuable Camera provider. Please enable debug logging (e.g. add -d if running from the command line, or change the log level in the config) and re-run your app to identify potential causes
-picamera - ModuleNotFoundError: No module named 'picamera'
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
-    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
-  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
-  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
-  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
-  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
-  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
-  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
-  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_picamera.py", line 18, in &lt;module&gt;
-    from picamera import PiCamera
-
-gi - ModuleNotFoundError: No module named 'gi'
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
-    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
-  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
-  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
-  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
-  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
-  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
-  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
-  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_gi.py", line 10, in &lt;module&gt;
-    from gi.repository import Gst
-
-opencv - ModuleNotFoundError: No module named 'cv2'
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\__init__.py", line 59, in core_select_lib
-    mod = importlib.__import__(name='{2}.{0}.{1}'.format(
-  File "&lt;frozen importlib._bootstrap&gt;", line 1129, in __import__
-  File "&lt;frozen importlib._bootstrap&gt;", line 1050, in _gcd_import
-  File "&lt;frozen importlib._bootstrap&gt;", line 1027, in _find_and_load
-  File "&lt;frozen importlib._bootstrap&gt;", line 1006, in _find_and_load_unlocked
-  File "&lt;frozen importlib._bootstrap&gt;", line 688, in _load_unlocked
-  File "&lt;frozen importlib._bootstrap_external&gt;", line 883, in exec_module
-  File "&lt;frozen importlib._bootstrap&gt;", line 241, in _call_with_frames_removed
-  File "c:\Users\student\anaconda3\envs\smile\lib\site-packages\kivy\core\camera\camera_opencv.py", line 48, in &lt;module&gt;
-    import cv2
-
-[INFO   ] [Video       ] Provider: null(['video_ffmpeg', 'video_ffpyplayer'] ignored)
-[WARNING] [SMILE       ] Unable to import PYO!
-[WARNING] [SMILE       ] Durations will be maintained, unless none are specified
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>indoor.csv 335
-outdoor.csv 309
-0: x
-1: SSMOOX
-2: SOSOMX
-3: x
-4: x
-5: x
-6: x
-7: SSOMOM Success!
-0: x
-1: MSSOOX
-2: x
-3: SOSOMX
-4: x
-5: SSOOMX
-6: x
-7: SMSMOO Success!
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
 <pre>[INFO   ] [Base        ] Start application main loop
 [INFO   ] [GL          ] NPOT texture support is available
-[WARNING] Deprecated property "&lt;BooleanProperty name=allow_stretch&gt;" of object "&lt;kivy.uix.image.Image object at 0x000001E7459D1150&gt;" has been set, it will be removed in a future version
-[WARNING] Deprecated property "&lt;BooleanProperty name=keep_ratio&gt;" of object "&lt;kivy.uix.image.Image object at 0x000001E7459D1150&gt;" was accessed, it will be removed in a future version
+[WARNING] Deprecated property "&lt;BooleanProperty name=allow_stretch&gt;" of object "&lt;kivy.uix.image.Image object at 0x0000018B68E5C890&gt;" has been set, it will be removed in a future version
+[WARNING] Deprecated property "&lt;BooleanProperty name=keep_ratio&gt;" of object "&lt;kivy.uix.image.Image object at 0x0000018B68E5C890&gt;" was accessed, it will be removed in a future version
 [INFO   ] [Base        ] Leaving application in progress...
 </pre>
 </div>
@@ -8150,7 +8156,435 @@ outdoor.csv 309
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">smile.log</span> <span class="kn">import</span> <span class="n">log2dl</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">test</span> <span class="o">=</span> <span class="n">log2dl</span><span class="p">(</span><span class="s1">'data/OLDNEW/test000/20231005_232738/log_old-new-test_0.slog'</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">"data/OLDNEW/test000/20231005_234801/"</span>
+
+<span class="n">study</span> <span class="o">=</span> <span class="n">log2dl</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">"log_old-new-study_0.slog"</span><span class="p">)</span>
+<span class="n">df_study</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
+<span class="n">df_study</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>location</th>
+<th>condition</th>
+<th>block_num</th>
+<th>trial_num</th>
+<th>stim_on_time</th>
+<th>stim_on_error</th>
+<th>log_time</th>
+<th>filename</th>
+<th>in_out</th>
+<th>loc</th>
+<th>cond</th>
+<th>pres_num</th>
+<th>type</th>
+<th>lag</th>
+<th>log_num</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>outdoor</td>
+<td>once</td>
+<td>0</td>
+<td>0</td>
+<td>6262.450295</td>
+<td>0.0</td>
+<td>6263.657866</td>
+<td>out0441.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>once</td>
+<td>1</td>
+<td>target</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>indoor</td>
+<td>spaced</td>
+<td>0</td>
+<td>1</td>
+<td>6263.694185</td>
+<td>0.0</td>
+<td>6264.907866</td>
+<td>in0346.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>target</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>outdoor</td>
+<td>spaced</td>
+<td>0</td>
+<td>2</td>
+<td>6264.944230</td>
+<td>0.0</td>
+<td>6266.157866</td>
+<td>out0564.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>target</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>indoor</td>
+<td>massed</td>
+<td>0</td>
+<td>3</td>
+<td>6266.178326</td>
+<td>0.0</td>
+<td>6267.407866</td>
+<td>in0104.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>massed</td>
+<td>1</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>indoor</td>
+<td>massed</td>
+<td>0</td>
+<td>4</td>
+<td>6267.435528</td>
+<td>0.0</td>
+<td>6268.657866</td>
+<td>in0104.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>massed</td>
+<td>2</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>5</th>
+<td>indoor</td>
+<td>once</td>
+<td>0</td>
+<td>5</td>
+<td>6268.678521</td>
+<td>0.0</td>
+<td>6269.907866</td>
+<td>in0278.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>once</td>
+<td>1</td>
+<td>target</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>6</th>
+<td>outdoor</td>
+<td>massed</td>
+<td>0</td>
+<td>6</td>
+<td>6269.928584</td>
+<td>0.0</td>
+<td>6271.157866</td>
+<td>out0053_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>1</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>7</th>
+<td>outdoor</td>
+<td>massed</td>
+<td>0</td>
+<td>7</td>
+<td>6271.186478</td>
+<td>0.0</td>
+<td>6272.407866</td>
+<td>out0053_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>2</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>8</th>
+<td>indoor</td>
+<td>spaced</td>
+<td>0</td>
+<td>8</td>
+<td>6272.437116</td>
+<td>0.0</td>
+<td>6273.657866</td>
+<td>in0346.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>2</td>
+<td>target</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>9</th>
+<td>outdoor</td>
+<td>spaced</td>
+<td>0</td>
+<td>9</td>
+<td>6273.695657</td>
+<td>0.0</td>
+<td>6274.907866</td>
+<td>out0564.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>2</td>
+<td>target</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>10</th>
+<td>indoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>0</td>
+<td>6305.817392</td>
+<td>0.0</td>
+<td>6307.019073</td>
+<td>in0006.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>target</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<th>11</th>
+<td>outdoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>1</td>
+<td>6307.047680</td>
+<td>0.0</td>
+<td>6308.269073</td>
+<td>out0068_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>target</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<th>12</th>
+<td>outdoor</td>
+<td>once</td>
+<td>1</td>
+<td>2</td>
+<td>6308.289472</td>
+<td>0.0</td>
+<td>6309.519073</td>
+<td>out0010_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>once</td>
+<td>1</td>
+<td>target</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>13</th>
+<td>indoor</td>
+<td>once</td>
+<td>1</td>
+<td>3</td>
+<td>6309.540495</td>
+<td>0.0</td>
+<td>6310.769073</td>
+<td>in0283.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>once</td>
+<td>1</td>
+<td>target</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>14</th>
+<td>indoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>4</td>
+<td>6310.799086</td>
+<td>0.0</td>
+<td>6312.019073</td>
+<td>in0006.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>2</td>
+<td>target</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<th>15</th>
+<td>outdoor</td>
+<td>massed</td>
+<td>1</td>
+<td>5</td>
+<td>6312.041318</td>
+<td>0.0</td>
+<td>6313.269073</td>
+<td>out0132_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>1</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>16</th>
+<td>outdoor</td>
+<td>massed</td>
+<td>1</td>
+<td>6</td>
+<td>6313.299757</td>
+<td>0.0</td>
+<td>6314.519073</td>
+<td>out0132_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>2</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>17</th>
+<td>outdoor</td>
+<td>spaced</td>
+<td>1</td>
+<td>7</td>
+<td>6314.542761</td>
+<td>0.0</td>
+<td>6315.769073</td>
+<td>out0068_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>2</td>
+<td>target</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<th>18</th>
+<td>indoor</td>
+<td>massed</td>
+<td>1</td>
+<td>8</td>
+<td>6315.800777</td>
+<td>0.0</td>
+<td>6317.019073</td>
+<td>in0215.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>massed</td>
+<td>1</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>19</th>
+<td>indoor</td>
+<td>massed</td>
+<td>1</td>
+<td>9</td>
+<td>6317.050828</td>
+<td>0.0</td>
+<td>6318.269073</td>
+<td>in0215.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>massed</td>
+<td>2</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">log2dl</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">"log_old-new-test_0.slog"</span><span class="p">)</span>
 <span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 <span class="n">df_test</span>
 </pre></div>
@@ -8208,164 +8642,59 @@ outdoor.csv 309
 <th>0</th>
 <td>0</td>
 <td>0</td>
-<td>5052.554524</td>
+<td>6286.191520</td>
 <td>0.0</td>
 <td>J</td>
-<td>5055.337457</td>
-<td>0.008719</td>
-<td>2.782933</td>
+<td>6287.309099</td>
+<td>0.000473</td>
+<td>1.117579</td>
 <td>True</td>
-<td>5055.837457</td>
-<td>in0213.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>massed</td>
+<td>6287.809099</td>
+<td>out1386.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
 <td>lure</td>
 <td>1</td>
-<td>1</td>
+<td>7</td>
 <td>0</td>
 </tr>
 <tr>
 <th>1</th>
 <td>0</td>
 <td>1</td>
-<td>5055.865875</td>
+<td>6287.834010</td>
 <td>0.0</td>
-<td>J</td>
-<td>5056.679992</td>
-<td>0.003003</td>
-<td>0.814117</td>
+<td>F</td>
+<td>6288.539167</td>
+<td>0.001501</td>
+<td>0.705157</td>
 <td>True</td>
-<td>5057.179992</td>
-<td>in0247.jpg</td>
+<td>6289.039167</td>
+<td>in0346.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
-<td>once</td>
-<td>lure</td>
+<td>spaced</td>
+<td>target</td>
 <td>1</td>
-<td>0</td>
+<td>7</td>
 <td>0</td>
 </tr>
 <tr>
 <th>2</th>
 <td>0</td>
 <td>2</td>
-<td>5057.192451</td>
-<td>0.0</td>
-<td>F</td>
-<td>5057.817894</td>
-<td>0.000271</td>
-<td>0.625444</td>
-<td>True</td>
-<td>5058.317894</td>
-<td>in0133.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>target</td>
-<td>1</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>3</th>
-<td>0</td>
-<td>3</td>
-<td>5058.343048</td>
+<td>6289.059038</td>
 <td>0.0</td>
 <td>J</td>
-<td>5059.277861</td>
-<td>0.000478</td>
-<td>0.934813</td>
+<td>6289.968720</td>
+<td>0.000469</td>
+<td>0.909682</td>
 <td>True</td>
-<td>5059.777861</td>
-<td>out0081_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>lure</td>
-<td>1</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>4</th>
-<td>0</td>
-<td>4</td>
-<td>5059.807227</td>
-<td>0.0</td>
-<td>J</td>
-<td>5063.023242</td>
-<td>0.008690</td>
-<td>3.216015</td>
-<td>True</td>
-<td>5063.523242</td>
-<td>in0021.jpg</td>
+<td>6290.468720</td>
+<td>in0266.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
-<td>spaced</td>
-<td>lure</td>
-<td>1</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>5</th>
-<td>0</td>
-<td>5</td>
-<td>5063.544655</td>
-<td>0.0</td>
-<td>J</td>
-<td>5064.398761</td>
-<td>0.001041</td>
-<td>0.854106</td>
-<td>True</td>
-<td>5064.898761</td>
-<td>out0051_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>lure</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>6</th>
-<td>0</td>
-<td>6</td>
-<td>5064.912217</td>
-<td>0.0</td>
-<td>F</td>
-<td>5065.565543</td>
-<td>0.001535</td>
-<td>0.653326</td>
-<td>True</td>
-<td>5066.065543</td>
-<td>out0145_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>target</td>
-<td>1</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>7</th>
-<td>0</td>
-<td>7</td>
-<td>5066.079988</td>
-<td>0.0</td>
-<td>J</td>
-<td>5066.955371</td>
-<td>0.000385</td>
-<td>0.875383</td>
-<td>True</td>
-<td>5067.455371</td>
-<td>out0048_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
 <td>once</td>
 <td>lure</td>
 <td>1</td>
@@ -8373,22 +8702,127 @@ outdoor.csv 309
 <td>0</td>
 </tr>
 <tr>
-<th>8</th>
+<th>3</th>
 <td>0</td>
-<td>8</td>
-<td>5067.475353</td>
+<td>3</td>
+<td>6290.492992</td>
 <td>0.0</td>
 <td>F</td>
-<td>5068.156468</td>
-<td>0.000487</td>
-<td>0.681115</td>
+<td>6291.498556</td>
+<td>0.008414</td>
+<td>1.005564</td>
 <td>True</td>
-<td>5068.656468</td>
-<td>in0272.jpg</td>
+<td>6291.998556</td>
+<td>out0564.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>target</td>
+<td>1</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>0</td>
+<td>4</td>
+<td>6292.026998</td>
+<td>0.0</td>
+<td>F</td>
+<td>6293.190500</td>
+<td>0.002055</td>
+<td>1.163502</td>
+<td>True</td>
+<td>6293.690500</td>
+<td>in0278.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>once</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>5</th>
+<td>0</td>
+<td>5</td>
+<td>6293.718991</td>
+<td>0.0</td>
+<td>J</td>
+<td>6294.766305</td>
+<td>0.008611</td>
+<td>1.047314</td>
+<td>True</td>
+<td>6295.266305</td>
+<td>in0234.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>lure</td>
+<td>1</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<th>6</th>
+<td>0</td>
+<td>6</td>
+<td>6295.285991</td>
+<td>0.0</td>
+<td>F</td>
+<td>6295.938976</td>
+<td>0.000616</td>
+<td>0.652985</td>
+<td>True</td>
+<td>6296.438976</td>
+<td>out0053_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>target</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>7</th>
+<td>0</td>
+<td>7</td>
+<td>6296.471040</td>
+<td>0.0</td>
+<td>F</td>
+<td>6297.366111</td>
+<td>0.008396</td>
+<td>0.895072</td>
+<td>True</td>
+<td>6297.866111</td>
+<td>in0104.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
 <td>massed</td>
 <td>target</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>8</th>
+<td>0</td>
+<td>8</td>
+<td>6297.886413</td>
+<td>0.0</td>
+<td>J</td>
+<td>6298.700143</td>
+<td>0.008414</td>
+<td>0.813730</td>
+<td>True</td>
+<td>6299.200143</td>
+<td>out0067_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>lure</td>
 <td>1</td>
 <td>1</td>
 <td>0</td>
@@ -8397,36 +8831,36 @@ outdoor.csv 309
 <th>9</th>
 <td>0</td>
 <td>9</td>
-<td>5068.678640</td>
+<td>6299.219774</td>
 <td>0.0</td>
-<td>F</td>
-<td>5069.352044</td>
-<td>0.000532</td>
-<td>0.673404</td>
+<td>J</td>
+<td>6300.250642</td>
+<td>0.007894</td>
+<td>1.030868</td>
 <td>True</td>
-<td>5069.852044</td>
-<td>in0039.jpg</td>
+<td>6300.750642</td>
+<td>in0157.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
-<td>once</td>
-<td>target</td>
+<td>massed</td>
+<td>lure</td>
 <td>1</td>
-<td>0</td>
+<td>1</td>
 <td>0</td>
 </tr>
 <tr>
 <th>10</th>
 <td>0</td>
 <td>10</td>
-<td>5069.878868</td>
+<td>6300.779175</td>
 <td>0.0</td>
 <td>F</td>
-<td>5070.545104</td>
-<td>0.000688</td>
-<td>0.666237</td>
+<td>6301.518034</td>
+<td>0.000336</td>
+<td>0.738859</td>
 <td>True</td>
-<td>5071.045104</td>
-<td>out0080_new.jpg</td>
+<td>6302.018034</td>
+<td>out0441.jpg</td>
 <td>outdoor</td>
 <td>outdoor</td>
 <td>once</td>
@@ -8439,40 +8873,40 @@ outdoor.csv 309
 <th>11</th>
 <td>0</td>
 <td>11</td>
-<td>5071.070330</td>
+<td>6302.046036</td>
 <td>0.0</td>
-<td>F</td>
-<td>5071.876095</td>
-<td>0.009116</td>
-<td>0.805765</td>
+<td>J</td>
+<td>6302.981084</td>
+<td>0.000478</td>
+<td>0.935048</td>
 <td>True</td>
-<td>5072.376095</td>
-<td>out0015_new.jpg</td>
+<td>6303.481084</td>
+<td>out0049_new.jpg</td>
 <td>outdoor</td>
 <td>outdoor</td>
-<td>massed</td>
-<td>target</td>
+<td>once</td>
+<td>lure</td>
 <td>1</td>
-<td>1</td>
+<td>0</td>
 <td>0</td>
 </tr>
 <tr>
 <th>12</th>
 <td>1</td>
 <td>0</td>
-<td>5094.794176</td>
+<td>6326.618013</td>
 <td>0.0</td>
 <td>F</td>
-<td>5095.925302</td>
-<td>0.001155</td>
-<td>1.131126</td>
-<td>True</td>
-<td>5096.425302</td>
-<td>out0127_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
+<td>6327.639054</td>
+<td>0.000480</td>
+<td>1.021041</td>
+<td>False</td>
+<td>6328.139054</td>
+<td>in0374.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
 <td>spaced</td>
-<td>target</td>
+<td>lure</td>
 <td>1</td>
 <td>4</td>
 <td>0</td>
@@ -8481,57 +8915,15 @@ outdoor.csv 309
 <th>13</th>
 <td>1</td>
 <td>1</td>
-<td>5096.436662</td>
-<td>0.0</td>
-<td>J</td>
-<td>5097.211317</td>
-<td>0.000547</td>
-<td>0.774656</td>
-<td>True</td>
-<td>5097.711317</td>
-<td>out2454.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>lure</td>
-<td>1</td>
-<td>4</td>
-<td>0</td>
-</tr>
-<tr>
-<th>14</th>
-<td>1</td>
-<td>2</td>
-<td>5097.738397</td>
+<td>6328.179961</td>
 <td>0.0</td>
 <td>F</td>
-<td>5098.608832</td>
-<td>0.001284</td>
-<td>0.870435</td>
-<td>True</td>
-<td>5099.108832</td>
-<td>in0137.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>target</td>
-<td>1</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>15</th>
-<td>1</td>
-<td>3</td>
-<td>5099.123347</td>
-<td>0.0</td>
-<td>J</td>
-<td>5100.090057</td>
-<td>0.000352</td>
-<td>0.966710</td>
-<td>True</td>
-<td>5100.590057</td>
-<td>in0089.jpg</td>
+<td>6329.578075</td>
+<td>0.000932</td>
+<td>1.398114</td>
+<td>False</td>
+<td>6330.078075</td>
+<td>in0147.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
 <td>massed</td>
@@ -8541,18 +8933,60 @@ outdoor.csv 309
 <td>0</td>
 </tr>
 <tr>
+<th>14</th>
+<td>1</td>
+<td>2</td>
+<td>6330.099525</td>
+<td>0.0</td>
+<td>F</td>
+<td>6331.608195</td>
+<td>0.000851</td>
+<td>1.508670</td>
+<td>True</td>
+<td>6332.108195</td>
+<td>in0006.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>spaced</td>
+<td>target</td>
+<td>1</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<th>15</th>
+<td>1</td>
+<td>3</td>
+<td>6332.133168</td>
+<td>0.0</td>
+<td>F</td>
+<td>6332.883365</td>
+<td>0.000267</td>
+<td>0.750198</td>
+<td>False</td>
+<td>6333.383365</td>
+<td>out0438.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>spaced</td>
+<td>lure</td>
+<td>1</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
 <th>16</th>
 <td>1</td>
 <td>4</td>
-<td>5100.605456</td>
+<td>6333.405973</td>
 <td>0.0</td>
 <td>F</td>
-<td>5101.266758</td>
-<td>0.000276</td>
-<td>0.661302</td>
+<td>6334.459555</td>
+<td>0.000428</td>
+<td>1.053582</td>
 <td>True</td>
-<td>5101.766758</td>
-<td>out0016.jpg</td>
+<td>6334.959555</td>
+<td>out0132_new.jpg</td>
 <td>outdoor</td>
 <td>outdoor</td>
 <td>massed</td>
@@ -8565,57 +8999,15 @@ outdoor.csv 309
 <th>17</th>
 <td>1</td>
 <td>5</td>
-<td>5101.788881</td>
-<td>0.0</td>
-<td>J</td>
-<td>5102.914639</td>
-<td>0.000324</td>
-<td>1.125757</td>
-<td>True</td>
-<td>5103.414639</td>
-<td>out0006_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>once</td>
-<td>lure</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>18</th>
-<td>1</td>
-<td>6</td>
-<td>5103.439272</td>
-<td>0.0</td>
-<td>J</td>
-<td>5104.415300</td>
-<td>0.000447</td>
-<td>0.976028</td>
-<td>True</td>
-<td>5104.915300</td>
-<td>out1386.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>lure</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>19</th>
-<td>1</td>
-<td>7</td>
-<td>5104.941217</td>
+<td>6334.998089</td>
 <td>0.0</td>
 <td>F</td>
-<td>5105.503828</td>
-<td>0.000695</td>
-<td>0.562611</td>
+<td>6336.862538</td>
+<td>0.008460</td>
+<td>1.864450</td>
 <td>True</td>
-<td>5106.003828</td>
-<td>in0058.jpg</td>
+<td>6337.362538</td>
+<td>in0215.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
 <td>massed</td>
@@ -8625,22 +9017,64 @@ outdoor.csv 309
 <td>0</td>
 </tr>
 <tr>
-<th>20</th>
+<th>18</th>
 <td>1</td>
-<td>8</td>
-<td>5106.024540</td>
+<td>6</td>
+<td>6337.390326</td>
 <td>0.0</td>
 <td>J</td>
-<td>5106.985855</td>
-<td>0.000403</td>
-<td>0.961315</td>
+<td>6339.027873</td>
+<td>0.000298</td>
+<td>1.637547</td>
 <td>True</td>
-<td>5107.485855</td>
-<td>in0097.jpg</td>
+<td>6339.527873</td>
+<td>in0320.jpg</td>
 <td>indoor</td>
 <td>indoor</td>
 <td>once</td>
 <td>lure</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>19</th>
+<td>1</td>
+<td>7</td>
+<td>6339.557467</td>
+<td>0.0</td>
+<td>J</td>
+<td>6341.101605</td>
+<td>0.000444</td>
+<td>1.544139</td>
+<td>False</td>
+<td>6341.601605</td>
+<td>in0283.jpg</td>
+<td>indoor</td>
+<td>indoor</td>
+<td>once</td>
+<td>target</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>20</th>
+<td>1</td>
+<td>8</td>
+<td>6341.616782</td>
+<td>0.0</td>
+<td>F</td>
+<td>6342.566395</td>
+<td>0.000988</td>
+<td>0.949613</td>
+<td>True</td>
+<td>6343.066395</td>
+<td>out0010_new.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>once</td>
+<td>target</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -8649,489 +9083,63 @@ outdoor.csv 309
 <th>21</th>
 <td>1</td>
 <td>9</td>
-<td>5107.507772</td>
+<td>6343.102109</td>
 <td>0.0</td>
 <td>F</td>
-<td>5108.210267</td>
-<td>0.000345</td>
-<td>0.702495</td>
+<td>6343.815800</td>
+<td>0.007300</td>
+<td>0.713691</td>
 <td>True</td>
-<td>5108.710267</td>
+<td>6344.315800</td>
 <td>out0068_new.jpg</td>
 <td>outdoor</td>
 <td>outdoor</td>
-<td>once</td>
+<td>spaced</td>
 <td>target</td>
 <td>1</td>
-<td>0</td>
+<td>6</td>
 <td>0</td>
 </tr>
 <tr>
 <th>22</th>
 <td>1</td>
 <td>10</td>
-<td>5108.725394</td>
+<td>6344.342900</td>
 <td>0.0</td>
-<td>F</td>
-<td>5109.477851</td>
-<td>0.000417</td>
-<td>0.752457</td>
+<td>J</td>
+<td>6345.531363</td>
+<td>0.008141</td>
+<td>1.188463</td>
 <td>True</td>
-<td>5109.977851</td>
-<td>in0232.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>once</td>
-<td>target</td>
+<td>6346.031363</td>
+<td>out2182.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>massed</td>
+<td>lure</td>
 <td>1</td>
-<td>0</td>
+<td>1</td>
 <td>0</td>
 </tr>
 <tr>
 <th>23</th>
 <td>1</td>
 <td>11</td>
-<td>5109.992451</td>
+<td>6346.068185</td>
 <td>0.0</td>
 <td>J</td>
-<td>5110.759409</td>
-<td>0.000451</td>
-<td>0.766958</td>
+<td>6347.011496</td>
+<td>0.000513</td>
+<td>0.943312</td>
 <td>True</td>
-<td>5111.259409</td>
-<td>in0129.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
+<td>6347.511496</td>
+<td>out1350.jpg</td>
+<td>outdoor</td>
+<td>outdoor</td>
+<td>once</td>
 <td>lure</td>
 <td>1</td>
-<td>7</td>
 <td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">study</span> <span class="o">=</span> <span class="n">log2dl</span><span class="p">(</span><span class="s1">'data/OLDNEW/test000/20231005_232738/log_old-new-study_0.slog'</span><span class="p">)</span>
-<span class="n">df_study</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">study</span><span class="p">)</span>
-<span class="n">df_study</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>location</th>
-<th>condition</th>
-<th>block_num</th>
-<th>trial_num</th>
-<th>stim_on_time</th>
-<th>stim_on_error</th>
-<th>log_time</th>
-<th>filename</th>
-<th>in_out</th>
-<th>loc</th>
-<th>cond</th>
-<th>pres_num</th>
-<th>type</th>
-<th>lag</th>
-<th>log_num</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>indoor</td>
-<td>spaced</td>
-<td>0</td>
-<td>0</td>
-<td>5032.431330</td>
-<td>0.0</td>
-<td>5033.617700</td>
-<td>in0133.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>target</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>1</th>
-<td>outdoor</td>
-<td>spaced</td>
-<td>0</td>
-<td>1</td>
-<td>5033.636137</td>
-<td>0.0</td>
-<td>5034.867700</td>
-<td>out0145_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>target</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>2</th>
-<td>indoor</td>
-<td>once</td>
-<td>0</td>
-<td>2</td>
-<td>5034.892999</td>
-<td>0.0</td>
-<td>5036.117700</td>
-<td>in0039.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>once</td>
-<td>1</td>
-<td>target</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>3</th>
-<td>outdoor</td>
-<td>massed</td>
-<td>0</td>
-<td>3</td>
-<td>5036.150384</td>
-<td>0.0</td>
-<td>5037.367700</td>
-<td>out0015_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>1</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>4</th>
-<td>outdoor</td>
-<td>massed</td>
-<td>0</td>
-<td>4</td>
-<td>5037.386057</td>
-<td>0.0</td>
-<td>5038.617700</td>
-<td>out0015_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>2</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>5</th>
-<td>outdoor</td>
-<td>once</td>
-<td>0</td>
-<td>5</td>
-<td>5038.644619</td>
-<td>0.0</td>
-<td>5039.867700</td>
-<td>out0080_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>once</td>
-<td>1</td>
-<td>target</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>6</th>
-<td>outdoor</td>
-<td>spaced</td>
-<td>0</td>
-<td>6</td>
-<td>5039.900580</td>
-<td>0.0</td>
-<td>5041.117700</td>
-<td>out0145_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>2</td>
-<td>target</td>
-<td>5</td>
-<td>0</td>
-</tr>
-<tr>
-<th>7</th>
-<td>indoor</td>
-<td>spaced</td>
-<td>0</td>
-<td>7</td>
-<td>5041.135766</td>
-<td>0.0</td>
-<td>5042.367700</td>
-<td>in0133.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>2</td>
-<td>target</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>8</th>
-<td>indoor</td>
-<td>massed</td>
-<td>0</td>
-<td>8</td>
-<td>5042.386808</td>
-<td>0.0</td>
-<td>5043.617700</td>
-<td>in0272.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>massed</td>
-<td>1</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>9</th>
-<td>indoor</td>
-<td>massed</td>
-<td>0</td>
-<td>9</td>
-<td>5043.638466</td>
-<td>0.0</td>
-<td>5044.867700</td>
-<td>in0272.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>massed</td>
-<td>2</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>10</th>
-<td>outdoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>0</td>
-<td>5073.380464</td>
-<td>0.0</td>
-<td>5074.603693</td>
-<td>out0127_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>target</td>
-<td>4</td>
-<td>0</td>
-</tr>
-<tr>
-<th>11</th>
-<td>indoor</td>
-<td>once</td>
-<td>1</td>
-<td>1</td>
-<td>5074.629416</td>
-<td>0.0</td>
-<td>5075.853693</td>
-<td>in0232.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>once</td>
-<td>1</td>
-<td>target</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>12</th>
-<td>indoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>2</td>
-<td>5075.881130</td>
-<td>0.0</td>
-<td>5077.103693</td>
-<td>in0137.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>target</td>
-<td>7</td>
-<td>0</td>
-</tr>
-<tr>
-<th>13</th>
-<td>outdoor</td>
-<td>once</td>
-<td>1</td>
-<td>3</td>
-<td>5077.133918</td>
-<td>0.0</td>
-<td>5078.353693</td>
-<td>out0068_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>once</td>
-<td>1</td>
-<td>target</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>14</th>
-<td>outdoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>4</td>
-<td>5078.379276</td>
-<td>0.0</td>
-<td>5079.603693</td>
-<td>out0127_new.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>spaced</td>
-<td>2</td>
-<td>target</td>
-<td>4</td>
-<td>0</td>
-</tr>
-<tr>
-<th>15</th>
-<td>indoor</td>
-<td>massed</td>
-<td>1</td>
-<td>5</td>
-<td>5079.615767</td>
-<td>0.0</td>
-<td>5080.853693</td>
-<td>in0058.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>massed</td>
-<td>1</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>16</th>
-<td>indoor</td>
-<td>massed</td>
-<td>1</td>
-<td>6</td>
-<td>5080.866675</td>
-<td>0.0</td>
-<td>5082.103693</td>
-<td>in0058.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>massed</td>
-<td>2</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>17</th>
-<td>outdoor</td>
-<td>massed</td>
-<td>1</td>
-<td>7</td>
-<td>5082.116347</td>
-<td>0.0</td>
-<td>5083.353693</td>
-<td>out0016.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>1</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>18</th>
-<td>outdoor</td>
-<td>massed</td>
-<td>1</td>
-<td>8</td>
-<td>5083.367625</td>
-<td>0.0</td>
-<td>5084.603693</td>
-<td>out0016.jpg</td>
-<td>outdoor</td>
-<td>outdoor</td>
-<td>massed</td>
-<td>2</td>
-<td>target</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<th>19</th>
-<td>indoor</td>
-<td>spaced</td>
-<td>1</td>
-<td>9</td>
-<td>5084.617159</td>
-<td>0.0</td>
-<td>5085.853693</td>
-<td>in0137.jpg</td>
-<td>indoor</td>
-<td>indoor</td>
-<td>spaced</td>
-<td>2</td>
-<td>target</td>
-<td>7</td>
 <td>0</td>
 </tr>
 </tbody>
