@@ -68,6 +68,7 @@ Thanks for participating!
 Press ENTER key to close."""
 RESP_KEYS = ["F", "J"]
 RESP_MAP = {"target": "F", "lure": "J"}
+STIM_PATH = "./stimuli/images/"
 STIM_DUR = 1
 STIM_JITTER = 0
 STUDY_ISI = 1
@@ -310,7 +311,7 @@ exp = Experiment(show_splash=False, resolution=(1024, 768))
 @Subroutine
 def studyTrial(self, block_num, trial_num, trial):
     # present stimulus
-    stim = Label(text=trial["filename"], font_size=50)
+    stim = Image(source=STIM_PATH+trial["filename"])
     # wait
     with UntilDone():
         Wait(STIM_DUR, STIM_JITTER)
@@ -332,7 +333,7 @@ def studyTrial(self, block_num, trial_num, trial):
 @Subroutine
 def testTrial(self, block_num, trial_num, trial):
     # present the stimulus
-    stim = Label(text=trial["filename"], font_size=50)
+    stim = Image(source=STIM_PATH+trial["filename"])
 
     with UntilDone():
         # make sure the stimulus has appeared on the screen
