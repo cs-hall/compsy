@@ -12,10 +12,10 @@ from smile.startup import InputSubject
 # enter configuration variables here (including the listgen variables)
 ## List gen
 # # My list gen params
-# lg_block = 1
+# lg_block = 2
 # lg_subs = 1
 # lg_block_params = {
-#     "pools": ["indoor", "outdoor"],
+#     "locs": ["indoor", "outdoor"],
 #     "condition_types": ["1p", "massed-rep", "spaced-rep"],
 #     "rep_types": [2],
 #     "distance_types": [np.arange(3, 7)],
@@ -39,8 +39,7 @@ num_tries = 1000
 ## Experiment
 INST_TEXT = """[u][size=40]SPACED REP INSTRUCTIONS[/size][/u]
 
-In this task, you will see pictures one at at time on the screen. 
-Please try to remember these pictures because there will be test after.
+In this task, you will see pictures and your job is to remember them for a test later. 
     
 Press ENTER key to continue."""
 INST_FONT_SIZE = 45
@@ -51,9 +50,16 @@ This is the study phase of the task. The images will advance automatically.
 Please focus on each image and try to commit it to memory
     
 Press ENTER key to continue."""
+INST_MATH = """[u][size=40]MATH SECTION[/size][/u]
+
+Here let's do some math!
+
+Press "F" if the equation is correct
+Press "J" if the equation is incorrect"""
 INST_TEST = """[u][size=40]TEST PHASE[/size][/u]
 
 This is the test phase of the task. You will see images and be asked if they are new or old. 
+
 The old images are ones that you have seen on the last study session. 
 The new images are ones that you have never seen before. 
 
@@ -61,6 +67,7 @@ Press "F" if the image is OLD
 Press "J" if the image is NEW
     
 Press ENTER key to continue."""
+
 END_TEXT = """[u][size=40]THANK YOU[/size][/u]
 
 Thanks for participating! 
@@ -71,17 +78,17 @@ RESP_MAP = {"target": "F", "lure": "J"}
 STIM_PATH = "./stimuli/images/"
 STIM_DUR = 1
 STIM_JITTER = 0
-STUDY_ISI = 1
-STUDY_JITTER = 0.5
+STUDY_ISI = 0.25
+STUDY_JITTER = 0.0
 TEST_ISI = 0.5
-TEST_JITTER = 0.5
+TEST_JITTER = 0.0
 
 # Distraction piece
-NUM_VARS=3
-MIN_NUM=1 
-MAX_NUM=9
-MAX_PROBS=50
-DURATION=20
+NUM_VARS = 3
+MIN_NUM = 1
+MAX_NUM = 9
+MAX_PROBS = 50
+DURATION = 2
 STUDY_TEST_WAIT = 1
 
 
@@ -91,7 +98,8 @@ STUDY_TEST_WAIT = 1
 # final_dict = LG.create_experiment(
 #     lg_block_params, nBlocks=lg_block, nSubjects=lg_subs, filename_dict=lg_filename_dict
 # )
-# blocks = final_dict["subj_0"]
+# blocks_dict = final_dict["subj_0"]
+# block_list = list(blocks_dict.values())
 
 
 # pers code
@@ -297,13 +305,13 @@ def make_block():
 
 
 # generate the proper number of blocks
-blocks = []
+block_list = []
 for b in range(lg_num_blocks):
-    blocks.append(make_block())
+    block_list.append(make_block())
 
 
 # create an experiment instance
-exp = Experiment(show_splash=False, resolution=(1024, 768))
+exp = Experiment(name="OLDNEW", show_splash=False, resolution=(1024, 768))
 
 
 # # YOUR CODE HERE TO BUILD THE STATE MACHINE
@@ -311,7 +319,13 @@ exp = Experiment(show_splash=False, resolution=(1024, 768))
 @Subroutine
 def studyTrial(self, block_num, trial_num, trial):
     # present stimulus
-    stim = Image(source=STIM_PATH+trial["filename"])
+    stim = Image(
+        source=STIM_PATH + trial["filename"],
+        width=1400,
+        height=1400,
+        allow_stretch=True,
+        keep_ratio=True,
+    )
     # wait
     with UntilDone():
         Wait(STIM_DUR, STIM_JITTER)
@@ -333,7 +347,13 @@ def studyTrial(self, block_num, trial_num, trial):
 @Subroutine
 def testTrial(self, block_num, trial_num, trial):
     # present the stimulus
-    stim = Image(source=STIM_PATH+trial["filename"])
+    stim = Image(
+        source=STIM_PATH + trial["filename"],
+        width=1400,
+        height=1400,
+        allow_stretch=True,
+        keep_ratio=True,
+    )
 
     with UntilDone():
         # make sure the stimulus has appeared on the screen
@@ -376,14 +396,30 @@ def studyTestBlock(self, block_num, block_dict):
         markup=True,
     )
     with UntilDone():
-        Wait(3)
+        # Wait(3)
         KeyPress(keys=["ENTER"])
     with Loop(block_dict["study"]) as trial:
         studyTrial(block_num, trial.i, trial.current)
 
     # Interval block
     Wait(STUDY_TEST_WAIT)
-    MathDistract(num_vars=3, min_num=1, max_num=9, max_probs=50, duration=20)
+    Label(
+        text=INST_MATH,
+        font_size=INST_FONT_SIZE,
+        text_size=(exp.screen.width * 0.75, None),
+        markup=True,
+    )
+    with UntilDone():
+        # Wait(3)
+        KeyPress(keys=["ENTER"])
+
+    MathDistract(
+        num_vars=NUM_VARS,
+        min_num=MIN_NUM,
+        max_num=MAX_NUM,
+        max_probs=MAX_PROBS,
+        duration=DURATION,
+    )
 
     # test block
     Label(
@@ -401,8 +437,9 @@ def studyTestBlock(self, block_num, block_dict):
     # TODO: provide feedback on performance?
 
 
-# InputSubject("old-new")
+# InputSubject("OLDNEW")
 
+### MAIN FLOW ###
 Label(
     text=INST_TEXT,
     font_size=INST_FONT_SIZE,
@@ -410,10 +447,10 @@ Label(
     markup=True,
 )
 with UntilDone():
-    Wait(3)
+    # Wait(3)
     KeyPress(keys=["ENTER"])
 
-with Loop(blocks) as block_dict:
+with Loop(block_list) as block_dict:
     studyTestBlock(block_dict.i, block_dict.current)
 
 Label(
@@ -423,7 +460,6 @@ Label(
     markup=True,
 )
 with UntilDone():
-    Wait(3)
     KeyPress(keys=["ENTER"])
 
 

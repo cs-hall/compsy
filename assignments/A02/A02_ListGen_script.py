@@ -28,7 +28,7 @@ logger.addHandler(fh)
 """
 Example call
 block_params = {
-    "pools": ["indoor", "outdoor"],
+    "locs": ["indoor", "outdoor"],
     "condition_types": ["1p", "massed-rep", "spaced-rep"],
     "rep_types": [2],
     "distance_types": [np.arange(3, 7)],
@@ -67,7 +67,7 @@ def test_study_list(study_list: list[dict], reps: int) -> set:
     spaced_count = 0
     unique_images = set()
     for trial in study_list:
-        unique_images.add(trial["image_filename"])
+        unique_images.add(trial["filename"])
         # Count the types
         if trial["type"] == "1p":
             once_p_count += 1
@@ -75,10 +75,10 @@ def test_study_list(study_list: list[dict], reps: int) -> set:
             massed_count += 1
         else:
             spaced_count += 1
-        # count the image pools
-        if trial["pool"] == "indoor":
+        # count the image locs
+        if trial["loc"] == "indoor":
             study_indoor_count += 1
-        elif trial["pool"] == "outdoor":
+        elif trial["loc"] == "outdoor":
             study_outdoor_count += 1
 
     assert (
@@ -130,33 +130,33 @@ def test_test_list(test_list: list[dict], old_prop: float) -> set:
     targ_out = 0
     unique_images = set()
     for trial in test_list:
-        unique_images.add(trial["image_filename"])
-        # Count the types
-        if trial["type"] == "lure":
+        unique_images.add(trial["filename"])
+        # Count the conds
+        if trial["cond"] == "lure":
             lure_count += 1
-            # count the image pool
-            if trial["pool"] == "indoor":
+            # count the image loc
+            if trial["loc"] == "indoor":
                 lure_in += 1
             else:
                 lure_out += 1
         else:
             nonlure_count += 1
-            # count the type
-            if trial["type"] == "1p":
+            # count the cond
+            if trial["cond"] == "1p":
                 once_p_count += 1
-            elif trial["type"] == "massed-rep":
+            elif trial["cond"] == "massed-rep":
                 massed_count += 1
             else:
                 spaced_count += 1
-            # count the image pool
-            if trial["pool"] == "indoor":
+            # count the image loc
+            if trial["loc"] == "indoor":
                 targ_in += 1
             else:
                 targ_out += 1
-        # count the image pool
-        if trial["pool"] == "indoor":
+        # count the image loc
+        if trial["loc"] == "indoor":
             test_indoor_count += 1
-        elif trial["pool"] == "outdoor":
+        elif trial["loc"] == "outdoor":
             test_outdoor_count += 1
 
     assert (
@@ -167,10 +167,10 @@ def test_test_list(test_list: list[dict], old_prop: float) -> set:
     )
 
     assert lure_in == lure_out, "FAILED: Test lure indoor outdoor not balanced"
-    print(f"PASSED: lure pool balancing({lure_in}=={lure_out})")
+    print(f"PASSED: lure loc balancing({lure_in}=={lure_out})")
 
     assert targ_in == targ_out, "FAILED: Test target indoor outdoor not balanced"
-    print(f"PASSED: target pool balancing({targ_in}=={targ_out})")
+    print(f"PASSED: target loc balancing({targ_in}=={targ_out})")
 
     assert (
         nonlure_count / (nonlure_count + lure_count) == old_prop
@@ -228,7 +228,7 @@ def test_subj(subj_blocks: dict[str, dict], reps: int, old_prop: float) -> bool:
 
 
 def create_conditions(
-    pools: list,
+    locs: list,
     condition_types: list,
     rep_types: list,
     distance_types: list,
@@ -237,12 +237,12 @@ def create_conditions(
     """
     Make the set of possible conditions
     Output should be list of dictionaries like the examples below
-    {"pool":"indoor", "type":"1p", "reps":0, "distances":[None], "placement":[0]}
-    {"pool":"indoor", "type":"massed-rep", "reps":3, "distances":[1,1], "placement":[0,1,2]}
-    {"pool":"indoor", "type":"spaced-rep", "reps":3, "distances":[3,3], "placement":[0,3,6]}
+    {"loc":"indoor", "cond":"1p", "reps":0, "distances":[None], "placement":[0]}
+    {"loc":"indoor", "cond":"massed-rep", "reps":3, "distances":[1,1], "placement":[0,1,2]}
+    {"loc":"indoor", "cond":"spaced-rep", "reps":3, "distances":[3,3], "placement":[0,3,6]}
     ------
     INPUTS
-        pools = ["indoor", "outdoor"] # for the stimulus types
+        locs = ["indoor", "outdoor"] # for the stimulus types
         condition_types = ["1p", "massed-rep", "spaced-rep"] # for the type of presentation
         rep_types = [2] # for the number of repetitions
         distance_types = [np.arange(3,7),]  # for the lists to randomly pull the distance from
@@ -251,13 +251,13 @@ def create_conditions(
     """
 
     conditions = []
-    for pool in pools:
+    for loc in locs:
         for condition_type in condition_types:
             if condition_type == "1p":
                 conditions.append(
                     {
-                        "pool": pool,
-                        "type": condition_type,
+                        "loc": loc,
+                        "cond": condition_type,
                         "reps": 1,
                         "distances": None,
                         "placement": np.array([0]),
@@ -270,8 +270,8 @@ def create_conditions(
                         distances = np.diff(placements)
                         conditions.append(
                             {
-                                "pool": pool,
-                                "type": condition_type,
+                                "loc": loc,
+                                "cond": condition_type,
                                 "reps": reps,
                                 "distances": distances,
                                 "placement": placements,
@@ -283,8 +283,8 @@ def create_conditions(
                         for dist in distance_types:
                             conditions.append(
                                 {
-                                    "pool": pool,
-                                    "type": condition_type,
+                                    "loc": loc,
+                                    "cond": condition_type,
                                     "reps": reps,
                                     "distances": dist.copy(),
                                     "placement": placements,
@@ -341,7 +341,7 @@ def create_trial_set(ntrials: int, conditions: list[dict], verbose=False) -> lis
         trial["id"] = i
 
         # add spacing information
-        if trial["type"] == "spaced-rep":
+        if trial["cond"] == "spaced-rep":
             dist_choice = random.choice(trial["distances"])
             logger.debug(dist_choice)
 
@@ -421,9 +421,9 @@ def place_trial_in_list(working_list: list, trial: dict, proposal: int) -> list:
     """
     placed_trial = trial.copy()
     placed_trial["placement"] = placed_trial["placement"] + proposal
-    logger.debug(f"trial placements: {placed_trial['placement']}")
+    logging.debug(f"trial placements: {placed_trial['placement']}")
     for i, placement in enumerate(placed_trial["placement"]):
-        working_list[placement] = placed_trial
+        working_list[placement] = placed_trial.copy()
         working_list[placement]["repetition"] = i
         working_list[placement]["location"] = placement
 
@@ -517,7 +517,7 @@ def complete_list_gen(trial_set: list, conditions: list, verbose=False) -> list[
     # sort list from most constrained to least constrained
     sorted_trials = []
     for condition in conditions:
-        df = trial_df[trial_df["type"] == condition]
+        df = trial_df[trial_df["cond"] == condition]
         sorted_trials += df.to_dict("records")
 
     logger.debug(f"sorted trials is {len(sorted_trials)} long")
@@ -580,7 +580,7 @@ def get_old_trials(
     study_list: list[dict],
     time_blocks: int,
     nOld: int,
-    pools: list,
+    locs: list,
     condition_types: list,
 ) -> list[dict]:
     """
@@ -591,7 +591,7 @@ def get_old_trials(
     study_list: list of the items seen before
     time_blocks: number of blocks to counterbalance list (not used)
     nOld: number of old items to pick
-    pools: image pools to counterbalance
+    locs: image locs to counterbalance
     condition_types: conditions to counterbalance
 
     Returns
@@ -647,15 +647,15 @@ def get_old_trials(
     old_trials = []
     # the following are used to sample evenly from each counterbalance condition
     time_section = 0
-    pool = 0
+    loc = 0
     study_type = 0
     for i in range(nOld):
-        old_pool = pools[pool]
-        old_type = condition_types[study_type]
+        old_loc = locs[loc]
+        old_cond = condition_types[study_type]
         found = False
         for ind, old_trial in enumerate(time_blocked_study_list[time_section]):
-            if old_trial["pool"] == old_pool:
-                if old_trial["type"] == old_type:
+            if old_trial["loc"] == old_loc:
+                if old_trial["cond"] == old_cond:
                     old_trials.append(old_trial)
                     time_blocked_study_list[time_section].pop(ind)
                     found = True
@@ -666,10 +666,10 @@ def get_old_trials(
         time_section += 1
         if time_section > len(time_blocked_study_list) - 1:
             time_section = 0
-        # iterate to the next pool type
-        pool += 1
-        if pool > len(pools) - 1:
-            pool = 0
+        # iterate to the next loc type
+        loc += 1
+        if loc > len(locs) - 1:
+            loc = 0
         # iterate to the next study type
         study_type += 1
         if study_type > len(condition_types) - 1:
@@ -677,8 +677,8 @@ def get_old_trials(
 
     if not study_type == 0:
         logger.warning("old items do not sample conditions evenly")
-    if not pool == 0:
-        logger.warning("old items do not sample pool evenly")
+    if not loc == 0:
+        logger.warning("old items do not sample loc evenly")
     if not time_section == 0:
         logger.warning("old study items do not sampled time_section")
 
@@ -688,24 +688,24 @@ def get_old_trials(
     return old_trials
 
 
-def create_lure_trials(pools: list[str], lure_types: list, nLures: int) -> list[dict]:
+def create_lure_trials(locs: list[str], lure_types: list, nLures: int) -> list[dict]:
     """
     Create a list of lure trials.
     ------
     INPUTS
-        pools: list of different stimulus conditions (NOTE: likely the same as the study session pools)
+        locs: list of different stimulus conditions (NOTE: likely the same as the study session locs)
         lure_types: list of different lure types (NOTE: could be used for adding repeting lures)
     OUTPUT
-        lure_trials: list of dictionaries with keys of pool, type, and id
+        lure_trials: list of dictionaries with keys of loc, type, and id
     """
     # create the lure conditions
     # this could be pulled out like it is for study itesm
     lure_conditions = []
-    for pool in pools:
+    for loc in locs:
         for lure_type in lure_types:
             lure_conditions.append(
                 {
-                    "pool": pool,
+                    "loc": loc,
                     "type": lure_type,
                 }
             )
@@ -752,13 +752,13 @@ def create_test_list(
     for i, old in enumerate(old_new_order):
         if old:
             old_trial = old_trials[0].copy()
-            old_trial["old"] = old
+            old_trial["type"] = "target"
             old_trial["test_placement"] = i
             test_list.append(old_trial)
             old_trials.pop(0)
         else:
             new_trial = new_trials[0].copy()
-            new_trial["old"] = old
+            new_trial["type"] = "lure"
             new_trial["test_placement"] = i
             test_list.append(new_trial)
             new_trials.pop(0)
@@ -773,7 +773,7 @@ def create_test_list(
 
 
 def make_study_block(
-    pools: list[str],
+    locs: list[str],
     condition_types: list,
     rep_types: list,
     distance_types: list,
@@ -791,7 +791,7 @@ def make_study_block(
     OUTPUT
         block_dict: dictionary of list of dictionaries
     """
-    conditions = create_conditions(pools, condition_types, rep_types, distance_types)
+    conditions = create_conditions(locs, condition_types, rep_types, distance_types)
 
     trial_set = create_trial_set(ntrials, conditions)
 
@@ -799,9 +799,9 @@ def make_study_block(
 
     old_new_order, nOld, nNew = target_lure_order(test_length, old_prop)
 
-    old_trials = get_old_trials(study_list, time_blocks, nOld, pools, condition_types)
+    old_trials = get_old_trials(study_list, time_blocks, nOld, locs, condition_types)
 
-    new_trials = create_lure_trials(pools, lure_types, nNew)
+    new_trials = create_lure_trials(locs, lure_types, nNew)
 
     test_list = create_test_list(old_new_order, old_trials, new_trials)
 
@@ -813,21 +813,21 @@ def make_study_block(
     return block_dict
 
 
-# block_dict = make_study_block(POOLS, CONDITION_TYPES, REP_TYPES, DISTANCE_TYPES, NTRIALS, TEST_LENGTH, OLD_PROP, TIME_BLOCKS, LURE_TYPES)
+# block_dict = make_study_block(LOCS, CONDITION_TYPES, REP_TYPES, DISTANCE_TYPES, NTRIALS, TEST_LENGTH, OLD_PROP, TIME_BLOCKS, LURE_TYPES)
 
 
 def read_all_images(filename_dict: dict) -> dict[str, str]:
     """
-    Read in image file names for each pool provided and return a dictionary
+    Read in image file names for each loc provided and return a dictionary
     Note: some issues may come up with different csvs
     ------
     INPUTS
-        filename_dict: dictionary of filenames; each pool has a name, filename (key, value)
+        filename_dict: dictionary of filenames; each loc has a name, filename (key, value)
     OUTPUT
         image_dict: dictionary of lists; one key for each condition, the keys match those in filename_dict
     """
     image_dict = {}
-    for pool, filename in filename_dict.items():
+    for loc, filename in filename_dict.items():
         # create a dictionary reader
         logger.debug(f"All the files in the current wd:")
         logger.debug(os.listdir())
@@ -840,7 +840,7 @@ def read_all_images(filename_dict: dict) -> dict[str, str]:
         # shuffle the list of images
         random.shuffle(loop_list)
         # add them to the dictionary
-        image_dict[pool] = loop_list
+        image_dict[loc] = loop_list
 
     return image_dict
 
@@ -855,9 +855,9 @@ def add_images(block_dict, image_dict):
     ------
     INPUTS
         block_dict: dictionary with test and study (or whatever) keys with lists of trials with block unique ids for pictures
-        image_dict: dictionary with key for each pool, lists of all images not used
+        image_dict: dictionary with key for each loc, lists of all images not used
     OUTPUT
-        block_dict: the same input with added image_filename key added to each trial
+        block_dict: the same input with added filename key added to each trial
         image_dict: the same input with all images used removed
     """
 
@@ -866,41 +866,41 @@ def add_images(block_dict, image_dict):
     for trial_set in block_dict.values():
         for trial in trial_set:
             if not trial["id"] in ids_for_images:
-                ids_for_images.append((trial["id"], trial["pool"]))
+                ids_for_images.append((trial["id"], trial["loc"]))
 
-    # get ids sorted into image pools
-    pool_ids = {}
-    for pool in image_dict:
-        # ids_for_images has trials with the trial id at 0, and pool type at 1
-        pool_ids[pool] = [trial[0] for trial in ids_for_images if trial[1] == pool]
+    # get ids sorted into image locs
+    loc_ids = {}
+    for loc in image_dict:
+        # ids_for_images has trials with the trial id at 0, and loc type at 1
+        loc_ids[loc] = [trial[0] for trial in ids_for_images if trial[1] == loc]
 
     # check to make sure we have enough items
-    for pool, image_list in pool_ids.items():
+    for loc, image_list in loc_ids.items():
         logger.debug(
-            f"{pool} ids; required={len(image_list)} > available={len(image_dict[pool])}"
+            f"{loc} ids; required={len(image_list)} > available={len(image_dict[loc])}"
         )
         assert len(image_list) <= len(
-            image_dict[pool]
-        ), f"Not enough images for {pool} ids; required={len(image_list)} > available={len(image_dict[pool])}"
+            image_dict[loc]
+        ), f"Not enough images for {loc} ids; required={len(image_list)} > available={len(image_dict[loc])}"
 
     # pair image file names and ids
     id_imagefile = {}
-    for pool, trial_ids in pool_ids.items():
-        # for each pool add images to all trials
+    for loc, trial_ids in loc_ids.items():
+        # for each loc add images to all trials
         for id in trial_ids:
             # making the image id pair
-            id_imagefile[id] = image_dict[pool][0]
+            id_imagefile[id] = image_dict[loc][0]
             # remove the image so it can't be used again
-            image_dict[pool].pop(0)
+            image_dict[loc].pop(0)
 
-    for pool in image_dict:
-        logger.debug(f"{pool} images left: {len(image_dict[pool])}")
+    for loc in image_dict:
+        logger.debug(f"{loc} images left: {len(image_dict[loc])}")
 
-    # add image_filename to block lists
+    # add filename to block lists
     for trial_list in block_dict.values():
         # for each trial list (ie study, test)
         for trial in trial_list:
-            trial["image_filename"] = id_imagefile[trial["id"]]
+            trial["filename"] = id_imagefile[trial["id"]]
 
     return block_dict, image_dict
 
