@@ -7,7 +7,8 @@
         "envs",
         "A03",
         "A04",
-        "A07-8"
+        "A07-8",
+        "FinalProject"
     ],
     "python.analysis.typeCheckingMode": "basic"
 }
